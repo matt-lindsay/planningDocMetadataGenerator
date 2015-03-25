@@ -1,3 +1,3 @@
-# Planning Doc Metadata Generator
+## Planning Doc Metadata Generator
 
-Used for a one off export job to feed in meta-data from an external source (CSV format) and convert it to XML format for the destination CMS.
+This processor is used for a one-off export jobs to feed document meta-data from an external source (CSV format) and convert it to XML for the destination CMS.
