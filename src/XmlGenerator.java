@@ -134,6 +134,11 @@ public class XmlGenerator {
 	}
 	
 	// Methods.
+	
+	// Collect each field from a record (or line) of data in CSV file.
+	// Save each field to a property in memory.
+	// Fields are separated by commas.
+	// Move on to the next record in memory.
 	public void readInCsvData() {
 		BufferedReader reader = null;
 		String line = "";
@@ -146,21 +151,19 @@ public class XmlGenerator {
 				// Separate each token when a ',' is found. Place each token into a property.
 				String[] records = line.split(csvSplitBy);
 				
-				this.setTitle(records[1]);
-				this.setDescription(records[2]);
-				this.setCreated(records[3]);
-				this.setAuthor(records[4]);
-				this.setPublisher(records[5]);
-				this.setContributor(records[6]);
-				this.setType(records[7]);
-				this.setIdentifier(records[8]);
-				this.setSource(records[9]);
-				this.setCoverage(records[10]);
-				this.setRights(records[11]);
-				this.setSubject(records[12]);
-				this.setPath(records[13]);
-				
-				//System.out.println(getTitle() + " " +  getDescription() + " " + getCreated() + " " + getIdentifier() + " " + getSubject() + " " + getPath());
+				this.setTitle(records[0]);
+				this.setDescription(records[1]);
+				this.setCreated(records[2]);
+				this.setAuthor(records[3]);
+				this.setPublisher(records[4]);
+				this.setContributor(records[5]);
+				this.setType(records[6]);
+				this.setIdentifier(records[7]);
+				this.setSource(records[8]);
+				this.setCoverage(records[9]);
+				this.setRights(records[10]);
+				this.setSubject(records[11]);
+				this.setPath(records[12]);
 				
 				xmlCreater();
 			}
@@ -179,6 +182,7 @@ public class XmlGenerator {
 		}
 	}
 	
+	// Write out XML file.
 	private void xmlCreater() throws IOException {
 		Properties prop = new Properties();
 		prop.setProperty("type", "cm:content");
@@ -194,7 +198,7 @@ public class XmlGenerator {
 		prop.setProperty("cm:identifier", this.getIdentifier());
 		prop.setProperty("cm:dcsource", this.getSource());
 		prop.setProperty("cm:coverage", this.getCoverage());
-		prop.setProperty("cm:rights", this.getRights()); // User groups?
+		prop.setProperty("cm:rights", this.getRights());
 		prop.setProperty("cm:subject", this.getSubject());
 		
 		FileOutputStream fos = new FileOutputStream(this.getPath() + ".metadata.properties.xml");
